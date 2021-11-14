@@ -101,7 +101,7 @@ export const textScaleUp = (
 export const playCombatText = (
   textObject: Phaser.GameObjects.Text,
   scene: Phaser.Scene
-): Promise<any> => {
+): Promise<void> => {
   return new Promise((resolve) => {
     const tween = textScaleUp(textObject, 0, -80, scene, () => {
       textObject.destroy();

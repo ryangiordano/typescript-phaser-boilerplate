@@ -5,13 +5,13 @@
  */
 
 import "phaser";
-import { MainScene } from "./scenes/main-scene";
+import { MainScene } from "./scenes/MainScene";
 import PhaserUpdatePlugin from "./utility/UpdatePlugin";
 import { Plugin as NineSlicePlugin } from "phaser3-nineslice";
 
 import { BLACK } from "./utility/Constants";
-import { AudioScene } from "./scenes/audioScene";
-import { BootScene } from "./scenes/bootScene";
+import { AudioScene } from "./scenes/AudioScene";
+import { BootScene } from "./scenes/BootScene";
 export type GameScenes = "BootScene" | "MainScene" | "Audio";
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -29,6 +29,9 @@ const config: Phaser.Types.Core.GameConfig = {
   backgroundColor: BLACK.str,
   physics: {
     default: "arcade",
+    arcade: {
+      debug: true,
+    },
   },
   render: { pixelArt: true, antialias: false },
 };

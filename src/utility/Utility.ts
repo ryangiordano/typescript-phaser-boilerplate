@@ -28,7 +28,7 @@ export enum Directions {
 }
 
 export const asyncForEach = (array, callback): Promise<any> => {
-  return new Promise(async (resolve) => {
+  return new Promise<void>(async (resolve) => {
     for (let i = 0; i < array.length; i++) {
       await callback(array[i], i, array);
     }
@@ -36,7 +36,7 @@ export const asyncForEach = (array, callback): Promise<any> => {
   });
 };
 
-export const wait = (timeToWait): Promise<any> =>
+export const wait = (timeToWait): Promise<void> =>
   new Promise((resolve) => setTimeout(() => resolve(), timeToWait));
 
 /**

@@ -1,4 +1,4 @@
-import { GameScenes } from "../../game";
+import { GameScenes } from "../../Game";
 
 export const startScene = (
   sceneKey: GameScenes,
