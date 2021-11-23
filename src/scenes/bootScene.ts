@@ -10,7 +10,6 @@ function preloadSceneDependencies(
 ) {
   scenes.forEach((scene) => {
     const { spriteDependencies, audioDependencies } = scene;
-    console.log(scene);
     if (spriteDependencies?.length) {
       spriteDependencies.forEach((sd) => {
         bootScene.load.spritesheet(sd.key, sd.url, {
