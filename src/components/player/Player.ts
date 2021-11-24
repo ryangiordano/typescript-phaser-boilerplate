@@ -1,40 +1,94 @@
+import { debounce, throttle } from "lodash";
 import { Directions } from "../../Constants";
+import { getRandomInt } from "../../utility/Utility";
 import Moveable from "../Moveable";
+import Missile from "../projectiles/Missile";
+
+function useAttack(attackFrames: number[]) {
+  let index = 0;
+  function getNextAttackFrame() {
+    index++;
+    index = index > attackFrames.length - 1 ? 0 : index;
+    return attackFrames[index];
+  }
+  return getNextAttackFrame;
+}
 
 export default class Player extends Moveable {
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  private direction: Directions;
+  private attackFrames: number[] = [];
+  private primaryAttackCooldown: number = 300;
   constructor({
     scene,
     x,
     y,
     texture,
+    direction,
   }: {
     scene;
     x: number;
     y: number;
     texture: string;
+    direction: Directions;
   }) {
     super(scene, x, y, texture, 0);
-    scene.add.existing(this);
+    this.direction = direction;
+    this.face(direction);
+    this.scene.physics.add.existing(this);
+    this.attackFrames = [10, 11];
   }
 
   /** Add listeners for player movement,
    * let callback handle any side effects of movement */
-  public setInputs(
-    onMove: (direction: Directions, moveable: Moveable) => void
-  ) {
+  public setInputs({
+    movementHandler,
+    primaryAttackHandler,
+    secondaryAttackHandler,
+  }: {
+    movementHandler: (direction: Directions, moveable: Moveable) => void;
+    primaryAttackHandler: () => void;
+    secondaryAttackHandler: () => void;
+  }) {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
+    this.scene.input.keyboard.addKey("E").on("down", () => {
+      secondaryAttackHandler();
+    });
 
-    this.cursors.space.addListener("down", () => {});
+    const getNextAttackFrame = useAttack(this.attackFrames);
 
-    this.cursors.down.addListener("down", () => onMove(Directions.down, this));
+    const debouncedFaceFront = debounce(() => {
+      this.face(this.direction);
+    }, 200);
 
-    this.cursors.up.addListener("down", () => onMove(Directions.up, this));
+    const throttledPrimaryAttack = throttle(
+      () => {
+        const frame = getNextAttackFrame();
+        this.setFrame(frame);
+        debouncedFaceFront();
 
-    this.cursors.left.addListener("down", () => onMove(Directions.left, this));
+        primaryAttackHandler();
+      },
+      this.primaryAttackCooldown,
+      { leading: true }
+    );
+
+    this.cursors.space.addListener("down", throttledPrimaryAttack);
+
+    this.cursors.down.addListener("down", () =>
+      movementHandler(Directions.down, this)
+    );
+
+    this.cursors.up.addListener("down", () =>
+      movementHandler(Directions.up, this)
+    );
+
+    this.cursors.left.addListener("down", () =>
+      movementHandler(Directions.left, this)
+    );
 
     this.cursors.right.addListener("down", () =>
-      onMove(Directions.right, this)
+      movementHandler(Directions.right, this)
     );
   }
 

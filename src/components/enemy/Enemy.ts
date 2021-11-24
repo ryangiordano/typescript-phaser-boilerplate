@@ -14,7 +14,7 @@ export default class Enemy extends Moveable {
     texture: string;
   }) {
     super(scene, x, y, texture, 0);
-    scene.add.existing(this);
+    scene.physics.add.existing(this);
   }
 
   static spriteDependencies: SpriteDependency[] = [
