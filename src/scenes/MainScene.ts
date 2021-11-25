@@ -16,6 +16,7 @@ import { Projectible } from "../components/projectiles/Projectible";
 import Impact from "../components/projectiles/Impact";
 import { characterDamage } from "../utility/tweens/character";
 import { getRandomInt } from "../utility/Utility";
+import Block from "../components/blocks/Block";
 
 export class MainScene extends DependentScene {
   private projectiles: Phaser.GameObjects.Group;
@@ -31,6 +32,7 @@ export class MainScene extends DependentScene {
     ...Player.spriteDependencies,
     ...Missile.spriteDependencies,
     ...Impact.spriteDependencies,
+    ...Block.spriteDependencies,
   ];
   static audioDependencies: AudioDependency[] = [];
 
