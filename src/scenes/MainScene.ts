@@ -16,7 +16,8 @@ import { Projectible } from "../components/projectiles/Projectible";
 import Impact from "../components/projectiles/Impact";
 import { characterDamage } from "../utility/tweens/character";
 import { getRandomInt } from "../utility/Utility";
-import Block from "../components/blocks/Block";
+import Block, { Blocks } from "../components/blocks/Block";
+import { blocks } from "../components/blocks/blocks_data";
 
 export class MainScene extends DependentScene {
   private projectiles: Phaser.GameObjects.Group;
@@ -76,7 +77,7 @@ export class MainScene extends DependentScene {
     });
 
     heroGridController.init();
-    heroGridController.addMoveableToGrid(player);
+    heroGridController.addToGrid(player);
     heroGridController.moveToCenter(player);
 
     player.setInputs({
@@ -120,8 +121,20 @@ export class MainScene extends DependentScene {
       grid: enemyGrid,
     });
     enemyGridController.init();
-    enemyGridController.addMoveableToGrid(enemy);
+    enemyGridController.addToGrid(enemy);
     enemy.face(Directions.left);
     this.boardEntites.add(enemy);
+
+    enemyGridController.addBlockToGrid(
+      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.red] })
+    );
+
+    enemyGridController.addBlockToGrid(
+      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.yellow] })
+    );
+
+    enemyGridController.addBlockToGrid(
+      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.blue] })
+    );
   }
 }

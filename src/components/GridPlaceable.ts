@@ -1,5 +1,5 @@
 import { Directions } from "../Constants";
-export default abstract class Moveable extends Phaser.Physics.Arcade.Sprite {
+export default abstract class GridPlaceable extends Phaser.Physics.Arcade.Sprite {
   constructor(
     scene: Phaser.Scene,
     x: number,

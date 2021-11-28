@@ -1,7 +1,7 @@
 import { debounce, throttle } from "lodash";
 import { Directions } from "../../Constants";
 import { getRandomInt } from "../../utility/Utility";
-import Moveable from "../Moveable";
+import GridPlaceable from "../GridPlaceable";
 import Missile from "../projectiles/Missile";
 
 function useAttack(attackFrames: number[]) {
@@ -14,7 +14,7 @@ function useAttack(attackFrames: number[]) {
   return getNextAttackFrame;
 }
 
-export default class Player extends Moveable {
+export default class Player extends GridPlaceable {
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   private direction: Directions;
   private attackFrames: number[] = [];
@@ -46,7 +46,7 @@ export default class Player extends Moveable {
     primaryAttackHandler,
     secondaryAttackHandler,
   }: {
-    movementHandler: (direction: Directions, moveable: Moveable) => void;
+    movementHandler: (direction: Directions, moveable: GridPlaceable) => void;
     primaryAttackHandler: () => void;
     secondaryAttackHandler: () => void;
   }) {

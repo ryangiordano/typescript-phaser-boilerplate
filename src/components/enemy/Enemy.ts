@@ -1,7 +1,7 @@
 import { Directions } from "../../Constants";
-import Moveable from "../Moveable";
+import GridPlaceable from "../GridPlaceable";
 
-export default class Enemy extends Moveable {
+export default class Enemy extends GridPlaceable {
   constructor({
     scene,
     x,
