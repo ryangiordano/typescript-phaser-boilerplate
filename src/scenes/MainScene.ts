@@ -124,17 +124,5 @@ export class MainScene extends DependentScene {
     enemyGridController.addToGrid(enemy);
     enemy.face(Directions.left);
     this.boardEntites.add(enemy);
-
-    enemyGridController.addBlockToGrid(
-      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.red] })
-    );
-
-    enemyGridController.addBlockToGrid(
-      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.yellow] })
-    );
-
-    enemyGridController.addBlockToGrid(
-      new Block({ scene: this, x: 0, y: 0, block: blocks[Blocks.blue] })
-    );
   }
 }
