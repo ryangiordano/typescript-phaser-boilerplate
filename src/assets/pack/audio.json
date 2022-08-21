@@ -1,0 +1,15 @@
+{
+  "preload": {
+    "files": [{
+        "type": "audio",
+        "key": "coin",
+        "url": "./src/assets/sounds/coin.wav"
+      },
+      {
+        "type": "audio",
+        "key": "startup",
+        "url": "./src/assets/sounds/startup.mp3"
+      }
+    ]
+  }
+}

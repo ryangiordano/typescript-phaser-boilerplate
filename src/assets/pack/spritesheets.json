@@ -1,0 +1,15 @@
+{
+  "preload": {
+    "files": [{
+        "type": "spritesheet",
+        "key": "ryanandlo",
+        "url": "./src/assets/images/ryanandlo.png",
+        "frameConfig": {
+          "frameWidth": 500,
+          "frameHeight": 103
+        }
+      }
+
+    ]
+  }
+}
