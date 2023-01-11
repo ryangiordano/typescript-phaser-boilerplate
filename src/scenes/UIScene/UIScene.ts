@@ -1,10 +1,8 @@
 import { UIBar } from "../../components/UI/UIBar";
-import DependentScene from "../DependentScene";
-import { buildNotificationUI } from "./NotificationUI";
 import NotificationView from "../../components/UI/Notification";
-import { buildTooltipUI } from "./TooltipUI";
+import { buildTooltipUI, useNotificationUI } from "daruma-phaser-helpers";
 
-export class UIScene extends DependentScene {
+export class UIScene extends Phaser.Scene {
   private UIParent: Phaser.GameObjects.Container;
   constructor() {
     super({
@@ -22,7 +20,9 @@ export class UIScene extends DependentScene {
 
   create(): void {
     this.buildUIParent();
-    buildNotificationUI(this);
+    const { triggerNotification } = useNotificationUI(this, {
+      position: { x: 0, y: 0 },
+    });
     buildTooltipUI(this);
   }
 

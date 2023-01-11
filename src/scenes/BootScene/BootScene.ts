@@ -1,35 +1,11 @@
 import { AnimationHelper } from "../../utility/tweens/animation-helper";
 import { BLACK, WHITE } from "../../utility/Constants";
-import DependentScene from "../DependentScene";
 import { UIScene } from "../UIScene/UIScene";
 import { StateScene } from "../StateScene/StateScene";
 import { MainScene } from "../MainScene/MainScene";
-
-function preloadSceneDependencies(
-  bootScene: Phaser.Scene,
-  scenes: typeof DependentScene[]
-) {
-  scenes.forEach((scene) => {
-    const { spriteDependencies, audioDependencies } = scene;
-    if (spriteDependencies?.length) {
-      spriteDependencies.forEach((sd) => {
-        bootScene.load.spritesheet(sd.key, sd.url, {
-          frameWidth: sd.frameWidth,
-          frameHeight: sd.frameHeight,
-        });
-      });
-    }
-    if (audioDependencies?.length) {
-      audioDependencies.forEach((ad) => {
-        bootScene.load.audio(ad.key, ad.url);
-      });
-    }
-  });
-}
+import { preloadSceneDependencies } from "daruma-phaser-helpers";
 
 export class BootScene extends Phaser.Scene {
-  private loadingBar: Phaser.GameObjects.Graphics;
-  private progressBar: Phaser.GameObjects.Graphics;
   private loaded: boolean = false;
   constructor() {
     super({ key: "BootScene" });

@@ -1,4 +1,4 @@
-import DependentScene from "../DependentScene";
+import { DependentScene } from "daruma-phaser-helpers";
 
 class CatshapeDaruma extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y) {

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.177",
+    "daruma-phaser-helpers": "^0.0.36-prerelease",
     "lodash": "^4.17.21",
     "phaser": "^3.55.2",
     "phaser3-nineslice": "^0.5.0"

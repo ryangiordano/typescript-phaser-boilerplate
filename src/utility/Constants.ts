@@ -11,14 +11,3 @@ export const DARK_GREY = { str: "#636363", hex: 0x636363 };
 
 export const TILE_SIZE = 64;
 
-export enum Directions {
-  up,
-  down,
-  left,
-  right,
-  upLeft,
-  downLeft,
-  upRight,
-  downRight,
-}
-

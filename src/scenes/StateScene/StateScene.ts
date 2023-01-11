@@ -1,11 +1,10 @@
-import DependentScene from "../DependentScene";
 import {
   buildNotificationManagement,
   NotificationManager,
 } from "./NotificationManagement";
 import { getSaveData } from "../../assets/data/player/SaveController";
 
-export class StateScene extends DependentScene {
+export class StateScene extends Phaser.Scene {
   public notificationManager: NotificationManager;
   constructor() {
     super({
